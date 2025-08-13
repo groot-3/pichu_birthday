@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journey Through Pages</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* Clean Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        /* Modern Page Design */
+        .page {
+            display: none;
+            text-align: center;
+            max-width: 700px;
+            padding: 60px 50px;
+            background: rgba(255, 255, 255, 0.95);
+            color: #2c3e50;
+            border-radius: 20px;
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.15),
+                0 10px 25px rgba(0, 0, 0, 0.1);
+            position: relative;
+            animation: slideIn 0.8s ease-out;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Beautiful Typography */
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            line-height: 1.2;
+        }
+        
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+            color: #34495e;
+            line-height: 1.3;
+        }
+        
+        /* Clean Content Styling */
+        .poem {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin: 30px 0;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            border-left: 4px solid #3498db;
+            font-style: italic;
+            color: #2c3e50;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .note {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin: 25px 0;
+            padding: 25px;
+            background: #f1f2f6;
+            border-radius: 12px;
+            color: #2c3e50;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+        }
+        
+        .wishes {
+            font-size: 1.3rem;
+            line-height: 1.7;
+            margin: 30px 0;
+            padding: 35px;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            border-radius: 15px;
+            color: #2c3e50;
+            box-shadow: 0 8px 20px rgba(252, 182, 159, 0.3);
+        }
+        
+        /* Modern Button Design */
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 15px 10px;
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            color: #2c3e50;
+            box-shadow: 0 8px 20px rgba(168, 237, 234, 0.3);
+        }
+        
+        .btn-secondary:hover {
+            box-shadow: 0 12px 25px rgba(168, 237, 234, 0.4);
+        }
+        
+        .btn-success {
+            background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+            color: #2c3e50;
+            box-shadow: 0 8px 20px rgba(132, 250, 176, 0.3);
+        }
+        
+        .btn-success:hover {
+            box-shadow: 0 12px 25px rgba(132, 250, 176, 0.4);
+        }
+        
+        .final-message {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #e74c3c;
+            margin-bottom: 20px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .page {
+                margin: 20px;
+                padding: 40px 30px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .poem, .note, .wishes {
+                font-size: 1rem;
+                padding: 20px;
+            }
+            
+            .btn {
+                padding: 12px 25px;
+                font-size: 1rem;
+                margin: 10px 5px;
+            }
+        }
+        
+        /* Subtle Animations */
+        .page {
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .poem, .note, .wishes {
+            transition: transform 0.2s ease;
+        }
+        
+        .poem:hover, .note:hover, .wishes:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Layers -->
+    <div class="bg-layer bg-layer-1"></div>
+    <div class="bg-layer bg-layer-2"></div>
+    
+    <!-- 3D Geometric Shapes -->
+    <div class="geometric-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+    
+    <!-- Particle System -->
+    <div class="particle-system" id="particleSystem"></div>
+
+    <!-- First Page -->
+    <div class="page active" id="page1">
+        <button class="btn" onclick="showPage('overaction')">Overaction Start</button>
+    </div>
+
+    <!-- Overaction Start Page -->
+    <div class="page" id="overaction">
+        <h2>Overaction Start</h2>
+        <div class="note">
+            just recalling our pilla batcha things
+        </div>
+        <button class="btn" onclick="showPage('page2')">7th Class</button>
+    </div>
+
+    <!-- 7th Class Page -->
+    <div class="page" id="page2">
+        <h2>"7th Class Facebook Days" 😄</h2>
+        <div class="poem">
+            Pichuka,<br>
+            I still remember 7th class… the first time we met on Facebook. Adi kuda unexpected ga! How good those days were. Facebook was so new to both of us, but we still chatted a lot. Slowly, slowly our bond got stronger day by day.<br><br>
+            
+            Because of you, I wasted so much internet data. I even remember using my father's mobile balance just for internet — just to chat with you. Those were golden days. I used to keep waiting for your message<br><br>
+            
+            The funniest thing? I used to chat with you late at night, covering myself fully with a blanket, keeping the mobile on silent… but still got caught by my parents because of the mobile brightness. Back then I had a keypad mobile — no brightness option! But you… you were rich, using a touch phone already.<br><br>
+            
+            Days passed, classes passed… and do you remember? We even said "Love you" as friends — pilla batch funny moments. Whatever it was, that one day felt so special. Only one option then — you, me, our days… and ending it with a sweet "Good night."
+        </div>
+        <button class="btn btn-secondary" onclick="showPage('page3')">10th Class</button>
+    </div>
+
+    <!-- 10th Class Page -->
+    <div class="page" id="page3">
+        <h2>"Miles of Memories"</h2>
+        <div class="poem">
+            Days passed, and we reached 10th class. Mana pichhi mudiripoyindi… chatting ki chatting ki addict aipoyam anukunta. But it wasn't just chatting — it became a habit, a part of our day, like breathing.<br><br>
+            
+            I still remember — when I was in 9th class, every single morning before school, around 7 AM, I would message you. My school van would pass by your house daily, and those few seconds when we saw each other… ayyo, those moments felt like the whole world stopped. Just a smile, a small wave — but it could keep me happy for the entire day.<br><br>
+            
+            Whenever I went to Naupada, I would slow down near your home and honk the horn, hoping you'd come out just for one glimpse. And you always did. Looking back now, it might seem silly or "cringe" to others… but to us, it was pure, innocent, and real. The kind of love and care that's rare to find again.<br><br>
+            
+            Do you remember? We even knew each other's Facebook and Instagram passwords. That's how much trust we had — no secrets, just comfort. Days kept passing, and we kept growing older, but our talks never felt old. Hour after hour, we would speak, and even with the same route, the same words — "Nuvvu cheppu, nuvvu cheppu" — it never became boring.<br><br>
+            
+            Honestly, those were the days. The kind of days that, when I close my eyes, I can still feel. I've locked them deep inside my heart's locker… and sometimes, when life feels heavy, I open that locker in my mind and live those moments again.
+        </div>
+        <button class="btn" onclick="showPage('page4')">Present</button>
+    </div>
+
+    <!-- Present Page -->
+    <div class="page" id="page4">
+        <h2>"The Bond on Pause"</h2>
+        <div class="poem">
+            Inter lo… ayyo, it was horrible. I didn't like that college at all — it felt like hell. Still, every night, talking to you from my friend's mobile was the only thing that made my heart calm and gave me a good sleep.<br><br>
+            
+            But I still remember the day you told me you were in a relationship. I acted normal, said "It's okay," but deep inside, it hurt. Even after that, in my imagination, I wished we'd join the same college. I knew it was almost impossible, but I kept that 1% hope alive. God didn't make it happen… maybe that's how it was meant to be.<br><br>
+            
+            Back in our 10th class nibba days, you once told me about your period pains. In that moment, I thought — if a girl can share her most uncomfortable, personal things with me, then I must be truly special to her. That thought stayed with me.<br><br>
+            
+            We grew up, but I still don't have clarity — were we just best friends or was there a deeper bond? I've thought about it a lot.<br><br>
+            
+            B.Tech came… and life changed a lot. I had my own relationship, and then a breakup that shook me badly. I was trying to get back to my old self but failed. I was still holding onto the past, trying to forget, but I couldn't.<br><br>
+            
+            I still remember — when I got into that relationship, the first person I called to share the news was you. But that day, in your voice, I felt a little sadness. Maybe I imagined it, maybe it was real — but it stayed in my mind.<br><br>
+            
+            When you came to Hyderabad and we got selected for the same company, I was so happy. I thought, "Finally, we'll roam Hyderabad together, create memories, because for so many years we only talked and never met." But even with this golden chance… we still stayed apart.<br><br>
+            
+            Yes, I agree — I ignored you sometimes. But it wasn't because of you. It was because of my fear. In my life, the people closest to me had hurt me, and I didn't want to face that pain again. I know I'm not a kid anymore, but that fear still follows me.<br><br>
+            
+            I thought… maybe if I stayed away, one day you'd come to me yourself, put all the past aside, and we'd start fresh. But that never happened. Now I understand — you don't feel the same way about our friendship anymore. And that truth… that harsh reality… breaks me.<br><br>
+            
+            I'm sorry. Truly sorry. But I don't have any other option now except to stay in my own world, away from everything. I've left social media, kept my phone aside. I left all the past behind, but it didn't work out. I don't want any new bonds anymore. I just need myself and my family — my blood relations — because they are the purest form of love.<br><br>
+            
+            But you know… I don't want to cut you off. I want our friendship back. I'm not putting full effort into getting it back, but sometimes I force myself to call you. Yet something inside pushes me back. The truth is… even you are not interested or pushing yourself forward.<br><br>
+            
+            You know I would never truly end our bond. This is not a breakup of friendship — it's just a break, a gap. And if either of us pushes a little, it will stand again. But… I don't know if that will ever happen.
+        </div>
+        <button class="btn btn-secondary" onclick="showPage('page7')">Chari Garu</button>
+    </div>
+
+
+
+    <!-- Chari Garu Note Page -->
+    <div class="page" id="page6">
+        <h2>Special Note</h2>
+        <div class="note">
+            Dear Chari Garu,<br><br>
+            
+            Your guidance has been like a lighthouse in our journey, showing us the way through every storm and calm. The wisdom you've shared and the care you've shown has shaped not just our minds, but our hearts too.<br><br>
+            
+            From those early days of learning to these moments of growth, your presence has been a constant source of inspiration. Thank you for believing in us when we couldn't believe in ourselves.<br><br>
+            
+            With deepest respect and gratitude,<br>
+            Your students
+        </div>
+        <button class="btn btn-success" onclick="showPage('page7')">Birthday Wishes</button>
+    </div>
+
+    <!-- Birthday Wishes Page -->
+    <div class="page" id="page7">
+        <h2>"To the Rare Soul I Call My Friend"</h2>
+        <div class="wishes">
+            Life is strange in the best way — it introduces us to people who become part of our journey in ways we never expected.<br><br>
+            
+            We've shared days full of endless talks, moments of unstoppable laughter, and times where silence spoke more than words ever could.<br><br>
+            
+            We've seen closeness, we've seen distance, yet somehow, the value of your presence in my life never changed — even if I didn't always say it out loud.<br><br>
+            
+            Today is your day — I wish you joy that finds you when you least expect it, dreams that turn into reality, and a strength that grows with every challenge you face.<br><br>
+            
+            May this year give you reasons to believe in yourself even more, people who see your worth as clearly as I do, and moments that make you say, "Yes, life is beautiful."<br><br>
+            
+            Happy Birthday, my friend. No matter where life takes us, I'm grateful that our paths crossed.
+        </div>
+        <button class="btn" onclick="showPage('page8')">Next</button>
+    </div>
+
+    <!-- Final Page -->
+    <div class="page" id="page8">
+        <h2></h2>
+        <div class="note">
+            Akkuva feel iepoka ok naa... mee husband ni pilla lu nu adiganu ani cheppu 😂. Doooladeripoendi edi create chaiyalaka but thank it, rembember all the sweet memories ❤️. Enka chadivindi chalu, padukoo… oh oh birthday kadha, calls and message lu vasti sare le. Ni8 antha jagaram chesi padukoo, boi boi 😏. Nenu repu call chaiyanu because na birthday ki ado casual ga "happy birthday ra" ani petti vadilesav… it hurts 🤭.<br><br>
+            
+            <strong>Pilla pichuka 🐥🎉 — Happy Birthday! 🎂💖</strong>
+        </div>
+        <button class="btn" onclick="showPage('technologia')">CLICK ME</button>
+    </div>
+
+    <!-- Technologia Surprise Page -->
+    <div class="page" id="technologia">
+        <div style="font-size: 4rem; font-weight: bold; color: #e74c3c; text-align: center; line-height: 1.2; margin: 50px 0;">
+            🤖 T E C H N O L O G I A 💻<br>
+            🚀✨🎯⚡🔥💡🎪🎭<br>
+            🎨🎵🎪🎯🚀💫⭐🌟
+        </div>
+        <div style="font-size: 2rem; margin-top: 30px;">
+            🎉🎊🥳🎈🎁🎂🍰🎪
+        </div>
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show the requested page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+        
+        // Simple button interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            const buttons = document.querySelectorAll('.btn');
+            buttons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    // Simple click effect
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 150);
+                });
+            });
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96e9805cf4a12e8d',t:'MTc1NTEwMTYyNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
